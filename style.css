@@ -8,8 +8,8 @@
 
 /* --- css variables --- */
 :root {
-  --bg: #f0ece4;         /* aged white / off-white paper */
-  --bg2: #e4dfd6;        /* slightly darker parchment */
+  --bg: #f0fff4;         /* aged white / off-white paper */
+  --bg2: #d3cec5;        /* slightly darker parchment */
   --accent1: #9e0b0f;    /* deep blood red */
   --accent2: #1a1008;    /* near black ink */
   --accent3: #cc1a1a;    /* brighter red for hover/highlights */
