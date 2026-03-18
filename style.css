@@ -36,7 +36,7 @@ html {
 body {
   background-color: var(--bg);
   background-image: url('notebook-dark.png');
-  background-size: 200px 200px;
+  background-size: 1000px 1000px;
   color: var(--text);
   font-family: "Syne Mono", monospace;
   font-size: 15px;
