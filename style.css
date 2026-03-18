@@ -86,6 +86,8 @@ ul { list-style: none; padding: 0; }
 .site-header {
   border: 3px dashed var(--accent1);
   background: var(--widget-bg);
+  background-image: url('natural-paper.png');
+  background-size: 200px 200px;
   padding: 16px;
   margin: 14px 0 0 0;
   position: relative;
@@ -228,6 +230,8 @@ ul { list-style: none; padding: 0; }
 
 .content-box {
   background: var(--widget-bg);
+  background-image: url('natural-paper.png');
+  background-size: 200px 200px;
   border: 2px solid var(--accent2);
   padding: 14px;
 }
@@ -253,6 +257,8 @@ ul { list-style: none; padding: 0; }
 
 .fun-box {
   border-color: var(--accent3);
+  background-image: url('natural-paper.png');
+  background-size: 200px 200px;
 }
 
 .fun-box h2 {
@@ -266,6 +272,8 @@ ul { list-style: none; padding: 0; }
   padding: 10px;
   margin-bottom: 10px;
   background: rgba(255,105,180,0.05);
+  background-image: url('natural-paper.png');
+  background-size: 200px 200px;
   position: relative;
 }
 
@@ -274,7 +282,7 @@ ul { list-style: none; padding: 0; }
 .post-date {
   font-size: 0.8rem;
   color: var(--text-dim);
-  font-family: 'VT323', monospace;
+  font-family: "Syne Mono", monospace;
   font-size: 1rem;
 }
 
@@ -300,7 +308,7 @@ ul { list-style: none; padding: 0; }
 /* --- footer --- */
 .site-footer {
   background-image: url('handmade-paper.png');
-  background-size: 1000px 1000px;
+  background-size: 200px 200px;
   background: var(--widget-bg);
   border: 2px dashed var(--accent1);
   text-align: center;
