@@ -1,8 +1,119 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ewan morris website</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
+</head>
 <body>
-  <h1>ewan morris</h1>
-  <p>hello welcome this is my website</p>
-</body>
 
+  <!-- marquee because of course -->
+  <div class="marquee-bar">
+    <marquee scrollamount="8">
+      [ now playing | check back later ]
+      [ upcoming notes | ring theory, more linear algebra ]
+      [ last updated | 2025-03-18 ]
+    </marquee>
+  </div>
+
+  <div class="site-wrapper">
+
+    <!-- header -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="site-title">
+          <h1>ewan morris website [ home ]</h1>
+          <p class="subtitle">[ ug mmath | uea | 2024-2028 ]
+          [ email me at <a href="mailto:udy24bku@uea.ac.uk">ewan.morris@uea.ac.uk</a> if you want ]</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- nav -->
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link active">[ home ]</a>
+      <a href="notes.html" class="nav-link">[ notes ]</a>
+      <a href="projects.html" class="nav-link">[ projects ]</a>
+      <a href="music.html" class="nav-link">[ music ]</a>
+    </nav>
+
+    <!-- main layout: sidebar + content -->
+    <div class="main-layout">
+
+      <!-- sidebar -->
+      <aside class="sidebar">
+
+        <div class="widget">
+          <div class="widget-title">about</div>
+          <img src="https://placecats.com/100/120" alt="me" class="sidebar-img" onerror="this.style.background:'#000000'">
+          <p>
+            hello i am ewan. here is a picture of me. i study maths and do other stuff also.
+          </p>
+        </div>
+
+        <div class="widget">
+          <div class="widget-title">navigation</div>
+          <ul class="sidebar-links">
+            <li> <a href="notes.html">lecture notes</a></li>
+            <li> <a href="projects.html">projects</a></li>
+            <li> <a href="music.html">music</a></li>
+          </ul>
+        </div>
+
+        <div class="widget">
+          <div class="widget-title">now playing</div>
+          <!-- stats.fm embed goes here — replace src with your actual widget -->
+          <div class="placeholder-embed">
+            [ this feature doesn't exist yet ]<br>
+            <small>see <a href="music.html">music page</a> for more</small>
+          </div>
+        </div>
+
+        <div class="widget">
+          <div class="widget-title">links</div>
+          <ul class="sidebar-links">
+            <li><a href="https://www.discogs.com/user/ewanmorris2402">discogs</a></li>
+          </ul>
+        </div>
+
+      </aside>
+
+      <!-- main content -->
+      <main class="main-content">
+
+        <div class="content-box">
+          <h2>welcome</h2>
+          <p>
+            hello. welcome to my website. here you can find my notes from some 
+            of the university modules i took. these are deliberately
+            concise and proofless as i mostly just used them to check definitions and
+            whatnot. you can also find out what music i have been listening to, if you want.
+          </p>
+        </div>
+
+        <div class="content-box">
+          <h2>recent updates</h2>
+
+          <article class="blog-post">
+            <div class="post-date">2025-03-18</div>
+            <h3><a href="#">nothing to see here yet</a></h3>
+            <p>:(</p>
+            <a href="notes.html" class="read-more">[ read more → ]</a>
+          </article>
+
+        </div>
+
+      </main>
+
+    </div>
+
+    <footer class="site-footer">
+      <p>this is the end of the page</p>
+    </footer>
+
+  </div>
+
+</body>
 </html>
