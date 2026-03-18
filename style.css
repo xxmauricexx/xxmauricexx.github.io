@@ -36,7 +36,7 @@ html {
 body {
   background-color: var(--bg);
   background-image: url('notebook-dark.png');
-  background-size: 1000px 1000px;
+  background-size: 200px 200px;
   color: var(--text);
   font-family: "Syne Mono", monospace;
   font-size: 15px;
@@ -97,10 +97,8 @@ ul { list-style: none; padding: 0; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg,
-    rgba(255,105,180,0.08) 0%,
-    rgba(0,255,204,0.05) 50%,
-    rgba(255,255,0,0.05) 100%);
+  background-image: url('handmade-paper.png');
+  background-size: 200px 200px;
   animation: headerShimmer 4s ease-in-out infinite alternate;
   pointer-events: none;
 }
@@ -130,7 +128,7 @@ ul { list-style: none; padding: 0; }
 .main-nav {
   background: var(--widget-bg);
   background-image: url('handmade-paper.png');
-  background-size: 1000px 1000px;
+  background-size: 200px 200px;
   border: 2px solid var(--accent2);
   padding: 8px 12px;
   margin: 6px 0;
@@ -175,7 +173,7 @@ ul { list-style: none; padding: 0; }
 .widget {
   background: var(--widget-bg);
   background-image: url('handmade-paper.png');
-  background-size: 1000px 1000px;
+  background-size: 200px 200px;
   border: 2px solid var(--accent1);
   padding: 10px;
   font-size: 0.88rem;
