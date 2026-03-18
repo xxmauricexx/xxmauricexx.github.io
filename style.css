@@ -35,7 +35,7 @@ html {
 
 body {
   background-color: var(--bg);
-  background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/lined_paper.png');
+  background-image: url('notebook-dark.png');
   background-size: 20px 20px;
   color: var(--text);
   font-family: "Syne Mono", monospace;
