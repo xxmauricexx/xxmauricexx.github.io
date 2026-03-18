@@ -97,7 +97,7 @@ ul { list-style: none; padding: 0; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('handmade-paper.png');
+  background-image: url('natural-paper.png');
   background-size: 200px 200px;
   animation: headerShimmer 4s ease-in-out infinite alternate;
   pointer-events: none;
@@ -127,7 +127,7 @@ ul { list-style: none; padding: 0; }
 /* --- nav --- */
 .main-nav {
   background: var(--widget-bg);
-  background-image: url('handmade-paper.png');
+  background-image: url('natural-paper.png');
   background-size: 200px 200px;
   border: 2px solid var(--accent2);
   padding: 8px 12px;
@@ -172,7 +172,7 @@ ul { list-style: none; padding: 0; }
 
 .widget {
   background: var(--widget-bg);
-  background-image: url('handmade-paper.png');
+  background-image: url('natural-paper.png');
   background-size: 200px 200px;
   border: 2px solid var(--accent1);
   padding: 10px;
