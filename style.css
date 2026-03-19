@@ -307,9 +307,9 @@ ul { list-style: none; padding: 0; }
 
 /* --- footer --- */
 .site-footer {
+  background: var(--widget-bg);
   background-image: url('handmade-paper.png');
   background-size: 200px 200px;
-  background: var(--widget-bg);
   border: 2px dashed var(--accent1);
   text-align: center;
   padding: 10px;
