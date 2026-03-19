@@ -67,6 +67,8 @@ ul { list-style: none; padding: 0; }
 
 /* --- marquee bar --- */
 .marquee-bar {
+  position: relative;
+  z-index: 10;
   background: var(--accent1);
   color: #000;
   font-family: "Syne Mono", monospace;
