@@ -66,7 +66,36 @@
           <div class="widget-title">now playing</div>
           <!-- stats.fm embed goes here — replace src with your actual widget -->
           <div class="placeholder-embed">
-            [ this feature doesn't exist yet ]<br>
+            <div id="now-playing">Loading...</div>
+              <script>
+              const username = "YOUR_LASTFM_USERNAME";
+              const apiKey = "YOUR_API_KEY";
+              
+              async function loadNowPlaying() {
+                const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`;
+              
+                const res = await fetch(url);
+                const data = await res.json();
+              
+                const track = data.recenttracks.track[0];
+                const el = document.getElementById("now-playing");
+              
+                if (track["@attr"] && track["@attr"].nowplaying === "true") {
+                  el.innerHTML = `
+                    <strong>Now Playing:</strong><br>
+                    ${track.name} – ${track.artist["#text"]}
+                  `;
+                } else {
+                  el.innerHTML = `
+                    <strong>Last Played:</strong><br>
+                    ${track.name} – ${track.artist["#text"]}
+                  `;
+                }
+              }
+              
+              loadNowPlaying();
+              setInterval(loadNowPlaying, 10000);
+              </script><br>
             <small>see <a href="music.html">music page</a> for more</small>
           </div>
         </div>
