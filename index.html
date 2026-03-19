@@ -84,7 +84,7 @@
                 if (track["@attr"] && track["@attr"].nowplaying === "true") {
                   el.innerHTML = `
                     <img src="${image}" width="100"><br>
-                    <strong>🔴 now playing</strong><br>
+                    <strong>🔴 now playing !</strong><br>
                     ${track.name} – ${track.artist["#text"]}
                   `;
                 } else {
@@ -94,11 +94,9 @@
                   `;
                 }
               }
-              
               loadNowPlaying();
               setInterval(loadNowPlaying, 10000);
-              </script><br>
-            <small>see <a href="music.html">music page</a> for more</small>
+              </script>
           </div>
         </div>
 
@@ -129,8 +127,14 @@
 
           <article class="blog-post">
             <div class="post-date">2025-03-19</div>
-            <h3><a href="#">now playing</a></h3>
-            <p>the 'now playing' widget works. yay.</p>
+            <h3><a href="#">last played</a></h3>
+            <p>the 'last played' widget now works. yay.</p>
+            <p>
+              i used the method detailed at
+              <a href="https://www.staycaffeinated.com/2024/02/05/lastfm">stay caffeinated</a> 
+              to pull data from lastfm (it is really easy).
+            </p>
+            <p></p>
           </article>
 
         </div>
