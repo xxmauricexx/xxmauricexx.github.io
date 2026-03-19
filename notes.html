@@ -45,51 +45,12 @@
       <aside class="sidebar">
 
         <div class="widget">
-          <div class="widget-title">navigation</div>
+          <div class="widget-title">related links</div>
           <ul class="sidebar-links">
-            <li> <a href="notes.html">lecture notes</a></li>
-            <li> <a href="projects.html">projects</a></li>
-            <li> <a href="music.html">music</a></li>
+            <li> <a href="notes.html">no links yet :(</a></li>
           </ul>
         </div>
 
-        <div class="widget">
-          <div class="widget-title">last played</div>
-          <!-- stats.fm embed goes here — replace src with your actual widget -->
-          <div class="placeholder-embed">
-            <div id="now-playing">Loading...</div>
-              <script>
-              const username = "maur1c333";
-              const apiKey = " 	b2d2df6795ccf1569518e65444d5727d";
-              
-              async function loadNowPlaying() {
-                const url = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${username}&api_key=${apiKey}&format=json&limit=1`;
-              
-                const res = await fetch(url);
-                const data = await res.json();
-              
-                const track = data.recenttracks.track[0];
-                const el = document.getElementById("now-playing");
-                const image = track.image[2]["#text"];
-              
-                if (track["@attr"] && track["@attr"].nowplaying === "true") {
-                  el.innerHTML = `
-                    <img src="${image}" width="100"><br>
-                    <strong>🔴 now playing !</strong><br>
-                    ${track.name} – ${track.artist["#text"]}
-                  `;
-                } else {
-                  el.innerHTML = `
-                    <img src="${image}" width="100"><br>
-                    ${track.name} – ${track.artist["#text"]}
-                  `;
-                }
-              }
-              loadNowPlaying();
-              setInterval(loadNowPlaying, 10000);
-              </script>
-          </div>
-        </div>
 
       </aside>
 
