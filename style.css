@@ -336,6 +336,7 @@ ul { list-style: none; padding: 0; }
 
 .side-gifs {
   position: fixed;
+  z-index: 1;
   top: 0;
   width: calc((100vw - 960px) / 2);
   display: flex;
