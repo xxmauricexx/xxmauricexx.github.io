@@ -12,7 +12,6 @@
   <!-- marquee because of course -->
   <div class="marquee-bar">
     <marquee scrollamount="8">
-      [ now playing | check back later ]
       [ upcoming notes | ring theory, more linear algebra ]
       [ last updated | 2025-03-18 ]
     </marquee>
@@ -83,7 +82,7 @@
               
                 if (track["@attr"] && track["@attr"].nowplaying === "true") {
                   el.innerHTML = `
-                    <img src="${image}" width="64"><br>
+                    <img src="${image}" width="100"><br>
                     <strong>Now Playing:</strong><br>
                     ${track.name} – ${track.artist["#text"]}
                   `;
@@ -121,7 +120,6 @@
             of the university modules i took. these are deliberately
             concise and proofless as i mostly just used them to check definitions and
             whatnot. you can also find out what music i have been listening to, if you want.
-            <iframe src="https://lastfmstats.com/user/maur1c333/charts" style="border: none;" width="50%" height="500"></iframe>
           </p>
         </div>
 
@@ -130,8 +128,8 @@
 
           <article class="blog-post">
             <div class="post-date">2025-03-18</div>
-            <h3><a href="#">nothing to see here yet</a></h3>
-            <p>:(</p>
+            <h3><a href="#">now playing</a></h3>
+            <p>the 'now playing' widget now works. yay.</p>
             <a href="notes.html" class="read-more">[ read more → ]</a>
           </article>
 
