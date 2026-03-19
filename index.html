@@ -63,7 +63,7 @@
         </div>
 
         <div class="widget">
-          <div class="widget-title">now playing</div>
+          <div class="widget-title">last played</div>
           <!-- stats.fm embed goes here — replace src with your actual widget -->
           <div class="placeholder-embed">
             <div id="now-playing">Loading...</div>
@@ -84,13 +84,13 @@
                 if (track["@attr"] && track["@attr"].nowplaying === "true") {
                   el.innerHTML = `
                     <img src="${image}" width="100"><br>
-                    <strong>now playing:</strong><br>
+                    <strong>[ !!! playing now !!! ]</strong><br>
                     ${track.name} – ${track.artist["#text"]}
                   `;
                 } else {
                   el.innerHTML = `
                     <img src="${image}" width="100"><br>
-                    <strong>last played:</strong><br>
+                    <strong></strong><br>
                     ${track.name} – ${track.artist["#text"]}
                   `;
                 }
