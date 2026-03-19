@@ -315,7 +315,7 @@ body::after {
   top: 0;
   width: calc((100vw - 960px) / 2);
   height: 100%;
-  background-image: url('gifs/yung.gif');
+  background-image: url('gifs/stars.gif');
   background-repeat: repeat;
   z-index: -1;
 }
