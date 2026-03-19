@@ -54,15 +54,6 @@
         </div>
 
         <div class="widget">
-          <div class="widget-title">navigation</div>
-          <ul class="sidebar-links">
-            <li> <a href="notes.html">lecture notes</a></li>
-            <li> <a href="projects.html">projects</a></li>
-            <li> <a href="music.html">music</a></li>
-          </ul>
-        </div>
-
-        <div class="widget">
           <div class="widget-title">last played</div>
           <!-- stats.fm embed goes here — replace src with your actual widget -->
           <div class="placeholder-embed">
@@ -89,7 +80,7 @@
                   `;
                 } else {
                   el.innerHTML = `
-                    <img src="${image}" width="100"><br>
+                    <img src="${image}" width="150"><br>
                     ${track.name} – ${track.artist["#text"]}
                   `;
                 }
