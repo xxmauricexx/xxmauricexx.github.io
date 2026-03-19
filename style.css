@@ -308,6 +308,21 @@ ul { list-style: none; padding: 0; }
   font-size: 0.9rem;
 }
 
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  width: calc((100vw - 960px) / 2);
+  height: 100%;
+  background-image: url('yung.gif');
+  background-repeat: repeat;
+  z-index: -1;
+}
+
+body::before { left: 0; }
+body::after { right: 0; }
+
 /* --- footer --- */
 .site-footer {
   background: var(--widget-bg);
@@ -321,20 +336,6 @@ ul { list-style: none; padding: 0; }
   font-size: 0.85rem;
 }
 
-.side-gifs {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  width: calc((100vw - 960px) / 2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding-top: 20px;
-}
-
-.side-gifs.left { left: 0; }
-.side-gifs.right { right: 0; }
 
 /* hide on small screens where there's no space */
 @media (max-width: 1100px) {
