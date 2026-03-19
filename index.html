@@ -79,9 +79,11 @@
               
                 const track = data.recenttracks.track[0];
                 const el = document.getElementById("now-playing");
+                const image = track.image[2]["#text"];
               
                 if (track["@attr"] && track["@attr"].nowplaying === "true") {
                   el.innerHTML = `
+                    <img src="${image}" width="64"><br>
                     <strong>Now Playing:</strong><br>
                     ${track.name} – ${track.artist["#text"]}
                   `;
