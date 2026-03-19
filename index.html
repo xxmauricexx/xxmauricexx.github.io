@@ -84,13 +84,12 @@
                 if (track["@attr"] && track["@attr"].nowplaying === "true") {
                   el.innerHTML = `
                     <img src="${image}" width="100"><br>
-                    <strong>[ !!! playing now !!! ]</strong><br>
+                    <strong>🔴 now playing</strong><br>
                     ${track.name} – ${track.artist["#text"]}
                   `;
                 } else {
                   el.innerHTML = `
                     <img src="${image}" width="100"><br>
-                    <strong></strong><br>
                     ${track.name} – ${track.artist["#text"]}
                   `;
                 }
