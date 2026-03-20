@@ -87,55 +87,10 @@
 
       <!-- main content -->
       <main class="main-content">
- 
-        <!-- stats.fm section -->
-        <div class="embed-section">
-          <h2>🎵 listening stats (stats.fm)</h2>
- 
-          <!--
-            stats.fm doesn't have a native embed widget yet,
-            but you can link your profile or use their API.
- 
-            OPTIONS:
-            1. just link to your profile:
-               <a href="https://stats.fm/yourusername">view my stats.fm profile →</a>
- 
-            2. use the stats.fm API to fetch and display data yourself:
-               https://stats.fm/api/docs
-               fetch('https://api.stats.fm/api/v1/users/yourusername/streams/stats')
-               then display top artists/tracks however you like
- 
-            3. screenshot / manual update — low-tech but it works!
- 
-            for now, here's a placeholder:
-          -->
- 
-          <div class="placeholder-embed" style="padding: 20px; text-align: center;">
-            <p>[ stats.fm stats go here ]</p>
-            <p style="margin-top:8px">
-              <a href="https://stats.fm/yourusername">→ view full profile on stats.fm</a>
-            </p>
-            <p style="font-size:0.8rem; margin-top:8px; color:var(--text-dim)">
-              (to embed: use the stats.fm API or link directly — see code comment)
-            </p>
-          </div>
-        </div>
- 
+        
         <!-- discogs section -->
         <div class="embed-section" style="border-color: var(--accent3);">
-          <h2 style="color: var(--accent3);">💿 record collection (discogs)</h2>
- 
-          <!--
-            discogs DOES have an official widget / badge you can embed.
-            go to: discogs.com → your profile → collection → share/embed
-            and grab the embed code. paste it below in place of the placeholder.
- 
-            alternatively, use the discogs API:
-            https://www.discogs.com/developers/
-            fetch('https://api.discogs.com/users/yourusername/collection/folders/0/releases')
- 
-            or just link your collection:
-          -->
+          <h2 style="color: var(--accent3);">discogs collection</h2>
  
           <div class="placeholder-embed" style="padding: 20px; text-align: center;">
             <div id="collection"></div>
@@ -145,9 +100,8 @@
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 16px;
-              
-                height: 600px;        /* IMPORTANT: fixed height */
-                overflow-y: scroll;   /* force scrolling */
+                height: 600px;        
+                overflow-y: scroll;   
                 padding: 10px;
                 box-sizing: border-box;
               }
@@ -164,22 +118,45 @@
               </style>
 
               <script>
-              fetch('https://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases', {
-                headers: { 'User-Agent': 'MySite/1.0' }
-              })
-              .then(res => res.json())
-              .then(data => {
-                const container = document.getElementById('collection');
-              
-                data.releases.forEach(item => {
-                  const div = document.createElement('div');
-                  div.innerHTML = `
-                    <img src="${item.basic_information.cover_image}" width="100">
-                    <p>${item.basic_information.artists[0].name} – ${item.basic_information.title}</p>
-                  `;
-                  container.appendChild(div);
+                async function fetchAllReleases() {
+                  let page = 1;
+                  let totalPages = 1;
+                  let all = [];
+                
+                  while (page <= totalPages) {
+                    const res = await fetch(
+                      `https://api.discogs.com/users/YOUR_USERNAME/collection/folders/0/releases?page=${page}&per_page=100&sort=added&sort_order=desc`,
+                      {
+                        headers: { 'User-Agent': 'MySite/1.0' }
+                      }
+                    );
+                
+                    const data = await res.json();
+                
+                    all = all.concat(data.releases);
+                    totalPages = data.pagination.pages;
+                
+                    page++;
+                  }
+                
+                  return all;
+                }
+                fetchAllReleases().then(releases => {
+                  const container = document.getElementById('collection');
+                
+                  releases.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'record';
+                
+                    div.innerHTML = `
+                      <img src="${item.basic_information.cover_image}">
+                      <p>${item.basic_information.artists[0].name}</p>
+                      <p>${item.basic_information.title}</p>
+                    `;
+                
+                    container.appendChild(div);
+                  });
                 });
-              });
               </script>
 
             <p style="margin-top:8px">
