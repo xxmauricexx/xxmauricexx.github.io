@@ -326,6 +326,24 @@ body::after {
 body::before { left: 0; }
 body::after { right: 0; }
 
+#sort {
+  font-family: 'Syne Mono', monospace;
+  font-size: 0.9rem;
+
+  background: transparent;
+  color: inherit;
+
+  border: 1px solid var(--accent3);
+  padding: 6px 10px;
+
+  cursor: pointer;
+}
+
+#sort option {
+  background: var(--accent3);   /* or your site bg */
+  color: var(--text)      /* or your text colour */
+}
+
 /* --- footer --- */
 .site-footer {
   background: var(--widget-bg);
