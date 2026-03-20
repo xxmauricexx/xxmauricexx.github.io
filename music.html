@@ -146,8 +146,10 @@
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 16px;
               
-                max-height: 600px;
-                overflow-y: auto; /* enables scrolling */
+                height: 600px;        /* IMPORTANT: fixed height */
+                overflow-y: scroll;   /* force scrolling */
+                padding: 10px;
+                box-sizing: border-box;
               }
               
               .record {
