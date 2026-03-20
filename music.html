@@ -118,45 +118,75 @@
               </style>
 
               <script>
-                async function fetchAllReleases() {
-                  let page = 1;
-                  let totalPages = 1;
-                  let all = [];
-                
-                  while (page <= totalPages) {
-                  const res = await fetch(
-                    `https://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases?page=${page}&per_page=100&sort=added&sort_order=desc`,
-                    {
-                      headers: { 'User-Agent': 'MySite/1.0' }
+              async function fetchAllReleases() {
+                let page = 1;
+                let totalPages = 1;
+                let all = [];
+              
+                while (page <= totalPages) {
+                  try {
+                    const res = await fetch(
+                      `https://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases?page=${page}&per_page=100&sort=added&sort_order=desc`,
+                      {
+                        headers: { 'User-Agent': 'MySite/1.0' }
+                      }
+                    );
+              
+                    if (!res.ok) {
+                      console.error("HTTP error:", res.status);
+                      break;
                     }
-                  );
-                
+              
                     const data = await res.json();
-                
+                    console.log("Page", page, data);
+              
                     all = all.concat(data.releases);
                     totalPages = data.pagination.pages;
-                
+              
                     page++;
+              
+                    await new Promise(r => setTimeout(r, 200)); // avoid rate limit
+                  } catch (err) {
+                    console.error("Fetch failed:", err);
+                    break;
                   }
-                
-                  return all;
                 }
+              
+                return all;
+              }
+              
+              document.addEventListener("DOMContentLoaded", () => {
                 fetchAllReleases().then(releases => {
+                  console.log("TOTAL:", releases.length);
+              
                   const container = document.getElementById('collection');
-                
+              
+                  if (!container) {
+                    console.error("No #collection element found");
+                    return;
+                  }
+              
+                  if (releases.length === 0) {
+                    container.innerHTML = "<p>Nothing loaded (check console)</p>";
+                    return;
+                  }
+              
                   releases.forEach(item => {
                     const div = document.createElement('div');
                     div.className = 'record';
-                
+              
+                    const info = item.basic_information;
+              
                     div.innerHTML = `
-                      <img src="${item.basic_information.cover_image}">
-                      <p>${item.basic_information.artists[0].name}</p>
-                      <p>${item.basic_information.title}</p>
+                      <img src="${info.cover_image || ''}">
+                      <p>${info.artists[0].name}</p>
+                      <p>${info.title}</p>
                     `;
-                
+              
                     container.appendChild(div);
                   });
                 });
+              });
               </script>
 
             <p style="margin-top:8px">
