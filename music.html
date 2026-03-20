@@ -171,7 +171,7 @@
               .then(data => {
                 const container = document.getElementById('collection');
               
-                data.releases.slice(0, 100).forEach(item => {
+                data.releases.forEach(item => {
                   const div = document.createElement('div');
                   div.innerHTML = `
                     <img src="${item.basic_information.cover_image}" width="100">
