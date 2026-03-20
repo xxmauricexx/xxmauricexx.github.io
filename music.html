@@ -138,60 +138,30 @@
           -->
  
           <div class="placeholder-embed" style="padding: 20px; text-align: center;">
-            <script type="text/javascript">
-              $(document).ready(function(){
-                $(".discogs-loading").show();
-                jQuery.getJSON("http://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases?callback=&sort=added&sort_order=desc&per_page=1000", function(data) {
-                  $(".discogs-loading").hide();
-                  if (data.pagination.items > 1) {
-                    $.each(data.releases, function(i,release){
-                      content =
-                      '<tr class="discogs-link" data-href="http://www.discogs.com/release/'+release.basic_information.id+'"><td>'+release.basic_information.artists[0].name+'</td><td>'+release.basic_information.title+'</td><td>'+release.basic_information.labels[0].name+'</td><td>'+release.basic_information.formats[0].descriptions[0]+'</td><td>'+release.basic_information.year+'</td></tr>';
-                      $(content).appendTo("#discogs-collection");
-                    });
-                    $(".discogs-link").click(function() {
-                      window.open($(this).data("href"));
-                    });
-                  }
-                  else{
-                    $("#discogs-collection").append("<tr class='discogs-error'><td>Error! Something is up with the Discogs API.</td></tr>");
-                  }
+            <div id="collection"></div>
+
+              <script>
+              fetch('https://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases', {
+                headers: { 'User-Agent': 'MySite/1.0' }
+              })
+              .then(res => res.json())
+              .then(data => {
+                const container = document.getElementById('collection');
+              
+                data.releases.slice(0, 10).forEach(item => {
+                  const div = document.createElement('div');
+                  div.innerHTML = `
+                    <img src="${item.basic_information.cover_image}" width="100">
+                    <p>${item.basic_information.artists[0].name} – ${item.basic_information.title}</p>
+                  `;
+                  container.appendChild(div);
                 });
               });
               </script>
-              
-              <h1>My Discogs Collection</h1>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Artist</th>
-                    <th>Title</th>
-                    <th>Label</th>
-                    <th>Format</th>
-                    <th>Year</th>
-                  </tr>
-                </thead>
-                <tbody id="discogs-collection">
-                  <tr class="discogs-loading">
-                  	<td>Loading ...</td>
-                  </tr>
-                </tbody>
-              </table>
+
             <p style="margin-top:8px">
-              <a href="https://www.discogs.com/user/ewanmorris2402/collection">→ view my collection on discogs</a>
+              <a href="https://www.discogs.com/user/ewanmorris2402/collection"> view on discogs</a>
             </p>
-            <p style="font-size:0.8rem; margin-top:8px; color:var(--text-dim)">
-              (get your embed code from discogs → profile → collection → share, or use the discogs API)
-            </p>
-          </div>
- 
-          <!-- example of a manual "currently spinning" section while you set up embeds -->
-          <div style="margin-top: 12px;">
-            <h3>currently spinning</h3>
-            <div class="blog-post" style="margin-top: 8px;">
-              <p>🎵 <strong>[album name]</strong> — [artist]</p>
-              <p style="font-size:0.85rem; color:var(--text-dim)">[your thoughts on it]</p>
-            </div>
           </div>
         </div>
  
