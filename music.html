@@ -140,6 +140,27 @@
           <div class="placeholder-embed" style="padding: 20px; text-align: center;">
             <div id="collection"></div>
 
+              <style>
+              #collection {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 16px;
+              
+                max-height: 600px;
+                overflow-y: auto; /* enables scrolling */
+              }
+              
+              .record {
+                text-align: center;
+                font-size: 0.9rem;
+              }
+              
+              .record img {
+                width: 100%;
+                border-radius: 6px;
+              }
+              </style>
+
               <script>
               fetch('https://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases', {
                 headers: { 'User-Agent': 'MySite/1.0' }
