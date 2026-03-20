@@ -124,12 +124,12 @@
                   let all = [];
                 
                   while (page <= totalPages) {
-                    const res = await fetch(
-                      `https://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases?page=${page},
-                      {
-                        headers: { 'User-Agent': 'MySite/1.0' }
-                      }
-                    );
+                  const res = await fetch(
+                    `https://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases?page=${page}&per_page=100&sort=added&sort_order=desc`,
+                    {
+                      headers: { 'User-Agent': 'MySite/1.0' }
+                    }
+                  );
                 
                     const data = await res.json();
                 
