@@ -340,7 +340,7 @@ body::after { right: 0; }
 }
 
 #sort option {
-  background: var(--accent3);   /* or your site bg */
+  background: var(--accent1);   /* or your site bg */
   color: var(--text)      /* or your text colour */
 }
 
