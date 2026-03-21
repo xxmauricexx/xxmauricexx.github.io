@@ -10,13 +10,8 @@
 <body>
 
   <!-- marquee because -->
-  <div class="marquee-bar">
-    <marquee scrollamount="8">
-      [ contrary to popular belief, i am *not* a cat ]
-      [ upcoming notes | ring theory, more linear algebra ]
-      [ last updated | 2025-03-19 ]
-    </marquee>
-  </div>
+<div class="marquee-bar"></div>
+<script src="components.js"></script>
 
   <div class="site-wrapper">
 
@@ -82,6 +77,15 @@
               </script>
           </div>
         </div>
+		
+		<div class="widget">
+          <div class="widget-title">links</div>
+		  <ul class="sidebar-links">
+		  <li><a href="https://www.discogs.com/user/ewanmorris2402/collection">discogs</a></li>
+		  <li><a href="https://stats.fm/user/ewanmorris2402">stats fm</a></li>
+		  <li><a href="https://www.last.fm/user/maur1c333">last fm</a></li>
+		  </ul>
+        </div>
 
       </aside>
 
@@ -90,152 +94,160 @@
         
         <!-- discogs section -->
         <div class="embed-section" style="border-color: var(--accent3);">
-          <h2 style="color: var(--accent3);">my physical media</h2>
+          <h2 style="color: var(--accent3);">physical media</h2>
  
           <div class="placeholder-embed" style="padding: 20px; text-align: center;">
-          <div>
-            <select id="sort">
-              <option value="newest">newest first</option>
-              <option value="oldest">oldest first</option>
-              <option value="artist">artist [ a–z ]</option>
-              <option value="title">title [ a–z ]</option>
-            </select>
-          </div>
-          
-          <div id="collection"></div>
-          
-          <style>
-          #collection {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 16px;
-          
-            height: 600px;
-            overflow-y: scroll;
-          
-            padding: 10px;
-            box-sizing: border-box;
-          }
-          
-          .record {
-            text-align: center;
-            font-size: 0.85rem;
-          }
-          
-          .record img {
-            width: 100%;
-            border-radius: 6px;
-          }
-          </style>
-          
-          <script>
-          let allReleases = [];
-          
-          // fetch everything
-          async function fetchAllReleases() {
-            let page = 1;
-            let totalPages = 1;
-            let all = [];
-          
-            while (page <= totalPages) {
-              const res = await fetch(
-                `https://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases?page=${page}&per_page=100&sort=added&sort_order=desc`,
-                {
-                  headers: { 'User-Agent': 'MySite/1.0' }
-                }
-              );
-          
-              const data = await res.json();
-          
-              all = all.concat(data.releases);
-              totalPages = data.pagination.pages;
-          
-              page++;
-            }
-          
-            return all;
-          }
-          
-          // render grid
-          function render(releases) {
-            const container = document.getElementById('collection');
-            container.innerHTML = '';
-          
-            releases.forEach(item => {
-              const div = document.createElement('div');
-              div.className = 'record';
-          
-              const info = item.basic_information;
-          
-              const formats = info.formats
-                ? [...new Set(info.formats.map(f => f.name))].join(", ")
-                : "";
-          
-              div.innerHTML = `
-                <img src="${info.cover_image || ''}">
-                <p>${info.artists[0].name}</p>
-                <p>${info.title}</p>
-                <p style="opacity:0.6; font-size:0.8rem;">${formats}</p>
-              `;
-          
-              container.appendChild(div);
-            });
-          }
-          
-          // sorting logic
-          function sortReleases(releases, type) {
-            const sorted = [...releases];
-          
-            if (type === "artist") {
-              sorted.sort((a, b) =>
-                a.basic_information.artists[0].name
-                  .localeCompare(b.basic_information.artists[0].name)
-              );
-            }
-          
-            if (type === "title") {
-              sorted.sort((a, b) =>
-                a.basic_information.title
-                  .localeCompare(b.basic_information.title)
-              );
-            }
-          
-            if (type === "oldest") {
-              sorted.reverse();
-            }
-          
-            return sorted;
-          }
-          
-          // init
-          document.addEventListener("DOMContentLoaded", () => {
-            fetchAllReleases().then(releases => {
-              allReleases = releases;
-              render(allReleases);
-            });
-          
-            document.getElementById('sort').addEventListener('change', (e) => {
-              const sorted = sortReleases(allReleases, e.target.value);
-              render(sorted);
-            });
-          });
-          </script>
+			<div>
+			  <select id="sort">
+				<option value="newest">newest first</option>
+				<option value="oldest">oldest first</option>
+				<option value="artist">artist [ a–z ]</option>
+				<option value="title">title [ a–z ]</option>
+			  </select>
+			</div>
+
+			<div id="collection"></div>
+
+			<style>
+			#collection {
+			  display: grid;
+			  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+			  gap: 5px;
+
+			  height: 400px;
+			  overflow-y: scroll;
+
+			  padding: 10px;
+			  box-sizing: border-box;
+			}
+
+			.record {
+			  text-align: center;
+			  font-size: 0.85rem;
+			}
+
+			.record img {
+			  width: 100%;
+			  border-radius: 0px;
+			}
+			</style>
+
+			<script>
+			let allReleases = [];
+			let currentReleases = [];
+			let visibleCount = 50;
+
+			// fetch all pages
+			async function fetchAllReleases() {
+			  let page = 1;
+			  let totalPages = 1;
+			  let all = [];
+
+			  while (page <= totalPages) {
+				const res = await fetch(
+				  `https://api.discogs.com/users/ewanmorris2402/collection/folders/0/releases?page=${page}&per_page=100&sort=added&sort_order=desc`,
+				  {
+					headers: { 'User-Agent': 'MySite/1.0' }
+				  }
+				);
+
+				const data = await res.json();
+
+				all = all.concat(data.releases);
+				totalPages = data.pagination.pages;
+
+				page++;
+			  }
+
+			  return all;
+			}
+
+			// render grid
+			function render() {
+			  const container = document.getElementById('collection');
+			  container.innerHTML = '';
+
+			  currentReleases.slice(0, visibleCount).forEach(item => {
+				const div = document.createElement('div');
+				div.className = 'record';
+
+				const info = item.basic_information;
+
+				const formats = info.formats
+				  ? [...new Set(info.formats.map(f => f.name))].join(", ")
+				  : "";
+
+				div.innerHTML = `
+				  <img src="${info.cover_image || ''}">
+				  <p>${info.artists[0].name}</p>
+				  <p>${info.title}</p>
+				  <p style="opacity:0.6; font-size:0.8rem;">${formats}</p>
+				`;
+
+				container.appendChild(div);
+			  });
+			}
+
+			// sorting
+			function sortReleases(releases, type) {
+			  const sorted = [...releases];
+
+			  if (type === "artist") {
+				sorted.sort((a, b) =>
+				  a.basic_information.artists[0].name
+					.localeCompare(b.basic_information.artists[0].name)
+				);
+			  }
+
+			  if (type === "title") {
+				sorted.sort((a, b) =>
+				  a.basic_information.title
+					.localeCompare(b.basic_information.title)
+				);
+			  }
+
+			  if (type === "oldest") {
+				sorted.reverse();
+			  }
+
+			  return sorted;
+			}
+
+			// init
+			document.addEventListener("DOMContentLoaded", () => {
+
+			  fetchAllReleases().then(releases => {
+				allReleases = releases;
+				currentReleases = releases;
+				render();
+			  });
+
+			  // sorting
+			  document.getElementById('sort').addEventListener('change', (e) => {
+				visibleCount = 50;
+				currentReleases = sortReleases(allReleases, e.target.value);
+				render();
+			  });
+
+			  // infinite scroll
+			  document.getElementById('collection').addEventListener('scroll', () => {
+				const el = document.getElementById('collection');
+
+				if (el.scrollTop + el.clientHeight >= el.scrollHeight - 50) {
+				  if (visibleCount >= currentReleases.length) return;
+
+				  visibleCount += 50;
+				  render();
+				}
+			  });
+
+			});
+			</script>
 
             <p style="margin-top:8px">
               <a href="https://www.discogs.com/user/ewanmorris2402/collection">view on discogs</a>
             </p>
           </div>
-        </div>
- 
-        <!-- manual recs / thoughts -->
-        <div class="content-box fun-box">
-          <h2>~*recommendations*~</h2>
-          <p>records i think everyone should hear:</p>
-          <ul>
-            <li>[ album ] — [ artist ]</li>
-            <li>[ album ] — [ artist ]</li>
-            <li>[ album ] — [ artist ]</li>
-          </ul>
         </div>
  
       </main>
